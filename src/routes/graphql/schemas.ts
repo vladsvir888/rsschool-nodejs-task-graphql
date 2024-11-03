@@ -44,22 +44,12 @@ export const graphQLSchema = new GraphQLSchema({
         args: {
           id: { type: new GraphQLNonNull(MemberTypeId) },
         },
-        resolve: async (
-          source,
-          { id }: { id: string },
-          { prisma, httpErrors }: Context,
-        ) => {
-          const memberType = await prisma.memberType.findUnique({
+        resolve: async (source, { id }: { id: string }, { prisma }: Context) => {
+          return await prisma.memberType.findUnique({
             where: {
               id,
             },
           });
-
-          if (memberType === null) {
-            throw httpErrors?.notFound();
-          }
-
-          return memberType;
         },
       },
 
@@ -74,22 +64,12 @@ export const graphQLSchema = new GraphQLSchema({
         args: {
           id: { type: new GraphQLNonNull(UUIDType) },
         },
-        resolve: async (
-          source,
-          { id }: { id: string },
-          { prisma, httpErrors }: Context,
-        ) => {
-          const post = await prisma.post.findUnique({
+        resolve: async (source, { id }: { id: string }, { prisma }: Context) => {
+          return await prisma.post.findUnique({
             where: {
               id,
             },
           });
-
-          if (post === null) {
-            throw httpErrors?.notFound();
-          }
-
-          return post;
         },
       },
 
@@ -104,22 +84,12 @@ export const graphQLSchema = new GraphQLSchema({
         args: {
           id: { type: new GraphQLNonNull(UUIDType) },
         },
-        resolve: async (
-          source,
-          { id }: { id: string },
-          { prisma, httpErrors }: Context,
-        ) => {
-          const user = await prisma.user.findUnique({
+        resolve: async (source, { id }: { id: string }, { prisma }: Context) => {
+          return await prisma.user.findUnique({
             where: {
               id,
             },
           });
-
-          if (user === null) {
-            throw httpErrors?.notFound();
-          }
-
-          return user;
         },
       },
 
@@ -134,22 +104,12 @@ export const graphQLSchema = new GraphQLSchema({
         args: {
           id: { type: new GraphQLNonNull(UUIDType) },
         },
-        resolve: async (
-          source,
-          { id }: { id: string },
-          { prisma, httpErrors }: Context,
-        ) => {
-          const profile = await prisma.profile.findUnique({
+        resolve: async (source, { id }: { id: string }, { prisma }: Context) => {
+          return await prisma.profile.findUnique({
             where: {
               id,
             },
           });
-
-          if (profile === null) {
-            throw httpErrors?.notFound();
-          }
-
-          return profile;
         },
       },
     },
